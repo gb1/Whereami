@@ -51,6 +51,12 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
     NSLog(@"%f", [oldLocation distanceFromLocation:newLocation]);
+    
+    //how many seconds ago was this loc created?
+    NSTimeInterval t = [[newLocation timestamp] timeIntervalSinceNow];
+    
+    //CLLocationManager will return the last found location of the device first
+    //if its more than 3 mins old ignore it
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
@@ -67,6 +73,9 @@
     CLLocationCoordinate2D loc = [userLocation coordinate];
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 250, 250);
     [worldView setRegion:region];
+    
+
+    
 }
 
 -(void)findLocation{
