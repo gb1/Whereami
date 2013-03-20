@@ -57,6 +57,13 @@
     
     //CLLocationManager will return the last found location of the device first
     //if its more than 3 mins old ignore it
+    
+    if(t > 180){
+        return;
+    }
+    
+    [self foundLocation:newLocation];
+    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
